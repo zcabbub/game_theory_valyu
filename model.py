@@ -1,7 +1,7 @@
-#%%
 import mesa
-#%%
-class ValyuModel(mesa.Model):
+
+
+class Valyu(mesa.Model):
     def __init__(self, N, width, height):
         self.num_agents = N
         self.schedule = mesa.time.RandomActivation(self)
@@ -19,7 +19,8 @@ class ValyuModel(mesa.Model):
 
     def step(self):
         self.schedule.step()
-#%%
+
+
 class ValyuAgent(mesa.Agent):
     def __init__(self, unique_id, model):
         super().__init__(unique_id, model)
@@ -41,24 +42,6 @@ class ValyuAgent(mesa.Agent):
         self.move()
         if self.wealth > 0:
             self.give_token()
-#%%
-model = ValyuModel(50, width=10, height=10)
-for i in range(20):
-    model.step()
-#%% md
-## visualize the number of agents residing in each cell
-#%%
-import numpy as np
-import matplotlib.pyplot as plt
-#%%
-agent_counts = np.zeros((model.grid.width, model.grid.height))
-#%%
-for cell in model.grid.coord_iter():
-    cell_content, x, y = cell
-    print(cell)
-    agent_count = len(cell_content)
-    agent_counts[x][y] = agent_count
-#%%
-plt.imshow(agent_counts, interpolation="nearest")
-plt.colorbar()
-plt.show()
+
+
+
